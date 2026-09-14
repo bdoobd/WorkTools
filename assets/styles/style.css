@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --primary-color: rgba(32, 41, 64, 1);
+  --secondary-color: rgba(202, 170, 152, 1);
+  --secondary-color_75: rgba(202, 170, 152, 0.75);
+  --tertiary-color: rgba(154, 134, 120, 1);
+  --menu-color: rgba(75, 64, 56, 1);
+}
+
+body {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+}
+
+a {
+  /* color: var(--secondary-color); */
+  text-decoration: none;
+}
+/*
+a:hover {
+  color: var(--tertiary-color);
+} */
+
+ul {
+  list-style: none;
+  margin: inherit;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 5rem 1fr auto;
+}
+/* ####################################################
+# Стили меню
+#################################################### */
+.header {
+  background-color: var(--menu-color);
+  position: fixed;
+  width: 100%;
+  left: 0;
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 2rem;
+  min-height: 3rem;
+}
+
+.logo {
+  color: var(--tertiary-color);
+  font-size: 1.8rem;
+  letter-spacing: -0.15rem;
+  font-weight: bold;
+}
+
+.nav {
+  transition: all 0.3s ease-in-out;
+}
+
+.nav__list {
+  display: flex;
+  column-gap: 1.25rem;
+}
+
+.nav__link {
+  font-size: 1rem;
+  color: var(--secondary-color_75);
+  transition: all 0.3s;
+}
+
+.nav__link:hover,
+.nav__link:focus {
+  color: var(--secondary-color);
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  height: 2px;
+  width: 2rem;
+  background-color: var(--tertiary-color);
+  margin: 0.5rem 0;
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 48rem) {
+  .nav {
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    background-color: var(--menu-color);
+    width: 100%;
+    transform: translateX(-100%);
+  }
+
+  .nav__item {
+    padding-block: 0.25rem;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.25rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+/* Menu styles for JS  */
+.nav--open {
+  transform: translateX(0);
+}
+
+.hamburger--open .bar:nth-child(1) {
+  transform: translateY(0.6rem) rotate(45deg);
+}
+.hamburger--open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger--open .bar:nth-child(3) {
+  transform: translateY(-0.6rem) rotate(-45deg);
+}
