@@ -10,13 +10,13 @@ const hamburgerElement = document.querySelector(".hamburger");
 const mainElement = document.querySelector(".main");
 
 const routes = {
-  'home': () => '<h1>Home</h1><div id="home__content"></div>',
-  'calc': () => '<h1>Calculator</h1><div id="calc__content"></div>',
-  'todo': () => '<h1>ToDo</h1><div id="todo__content"></div>',
-  'memorizer': () => '<h1>Memorizer</h1><div id="memorizer__content"></div>',
-  'other': () => '<h1>Other</h1><div id="other__content"></div>',
-  'spare': () => '<h1>Spare</h1><div id="spare__content"></div>',
-}
+  home: () => '<h1>Home</h1><div id="home__content"></div>',
+  calc: () => '<h1>Calculator</h1><div id="calc__content"></div>',
+  todo: () => '<h1>ToDos</h1><div id="todo__content"></div>',
+  memorizer: () => '<h1>Memorizer</h1><div id="memorizer__content"></div>',
+  other: () => '<h1>Other</h1><div id="other__content"></div>',
+  spare: () => '<h1>Spare</h1><div id="spare__content"></div>',
+};
 
 function navigateTo(route) {
   if (routes[route]) {
@@ -29,13 +29,13 @@ function navigateTo(route) {
 }
 
 const inits = {
-  'home': initHome,
-  'calc': initCalc,
-  'todo': initTodo,
-  'memorizer': initMemorizer,
-  'other': initOther,
-  'spare': initSpare,
-}
+  home: initHome,
+  calc: initCalc,
+  todo: initTodo,
+  memorizer: initMemorizer,
+  other: initOther,
+  spare: initSpare,
+};
 
 // MENU
 hamburgerElement.addEventListener("click", () => {
@@ -57,5 +57,5 @@ navElement.addEventListener("click", (event) => {
 
 // START UP
 document.addEventListener("DOMContentLoaded", () => {
-  navigateTo('home');
+  navigateTo("home");
 });
