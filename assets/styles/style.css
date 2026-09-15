@@ -13,6 +13,7 @@ body {
   color: var(--secondary-color);
   font-family: Roboto, sans-serif;
   font-size: 16px;
+  
 }
 
 a {
@@ -31,16 +32,21 @@ ul {
 
 .container {
   display: grid;
-  grid-template-rows: 5rem 1fr auto;
+  min-height: 100vh;
+  grid-template-rows: 3rem 1fr auto;
+}
+
+.active {
+  color: var(--secondary-color);
 }
 /* ####################################################
 # Стили меню
 #################################################### */
 .header {
   background-color: var(--menu-color);
-  position: fixed;
+  /* position: fixed;
   width: 100%;
-  left: 0;
+  left: 0; */
 }
 
 .header__content {
