@@ -10,7 +10,15 @@ const hamburgerElement = document.querySelector(".hamburger");
 const mainElement = document.querySelector(".main");
 
 const routes = {
-  home: () => '<h1>Home</h1><div id="home__content"></div>',
+  home: () => ` <div class="links-header">
+                  <h1>Рабочие ссылки</h1>
+                  <button id="add-link-btn" class="btn btn__add-link">+ Добавить ссылку</button>
+                </div>
+                <!-- Скрытая по умолчанию форма добавления -->
+                <div id="link-form-container" class="modal-hidden"></div>
+                <!-- Сетка для карточек -->
+                <div id="links-grid" class="cards-grid">
+                </div>`,
   calc: () => '<h1>Calculator</h1><div id="calc__content"></div>',
   todo: () => '<h1>ToDos</h1><div id="todo__content"></div>',
   memorizer: () => '<h1>Memorizer</h1><div id="memorizer__content"></div>',
@@ -57,5 +65,5 @@ navElement.addEventListener("click", (event) => {
 
 // START UP
 document.addEventListener("DOMContentLoaded", () => {
-  navigateTo("todo");
+  navigateTo("home");
 });

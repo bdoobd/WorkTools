@@ -6,7 +6,7 @@
   --secondary-color_75: rgba(202, 170, 152, 0.75);
   --tertiary-color: rgba(154, 134, 120, 1);
   --menu-color: rgba(75, 64, 56, 1);
-  --color-done: rgba(0, 255, 0, .15);
+  --color-done: rgba(0, 255, 0, 0.15);
 }
 
 * {
@@ -115,8 +115,7 @@ ul {
   transition: all 0.3s ease-in-out;
 }
 
-@media(max-width: 56rem) {
- 
+@media (max-width: 56rem) {
 }
 
 @media (max-width: 48rem) {
@@ -170,7 +169,7 @@ ul {
   grid-template-columns: 1fr 20rem;
 }
 .todo__form {
-   width: 100%;
+  width: 100%;
   /*max-width: 35rem;
   margin: 0 auto;
   display: flex;
@@ -180,7 +179,7 @@ ul {
     width: 100%;
     font-size: 1.2rem;
     /* border-radius: 1rem; */
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border: none;
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -192,7 +191,7 @@ ul {
     height: 7rem;
     margin-block-start: 0.5rem;
     font-size: 1.2rem;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     /* border-radius: 1rem; */
     background-color: var(--primary-color);
     color: var(--secondary-color);
@@ -236,8 +235,24 @@ ul {
   }
 }
 
-@media(max-width: 56rem) {
+@media (max-width: 56rem) {
   #todo__content {
     grid-template-columns: 1fr;
   }
+}
+
+/* Links block */
+.links-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-block-end: 1rem;
+}
+.btn__add-link {
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--menu-color);
+  color: var(--secondary-color-75);
+  border: none;
+  cursor: pointer;
 }
