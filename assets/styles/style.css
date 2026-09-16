@@ -6,6 +6,13 @@
   --secondary-color_75: rgba(202, 170, 152, 0.75);
   --tertiary-color: rgba(154, 134, 120, 1);
   --menu-color: rgba(75, 64, 56, 1);
+  --color-done: rgba(0, 255, 0, .15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -36,13 +43,19 @@ ul {
 }
 
 .btn {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.1rem;
 }
 
 .active {
   color: var(--secondary-color);
 }
+
+.done {
+  background-color: var(--color-done);
+  text-decoration: line-through;
+  color: var(--secondary-color_75);
+}
+
 /* ####################################################
 # Стили меню
 #################################################### */
@@ -102,6 +115,10 @@ ul {
   transition: all 0.3s ease-in-out;
 }
 
+@media(max-width: 56rem) {
+ 
+}
+
 @media (max-width: 48rem) {
   .nav {
     position: fixed;
@@ -147,30 +164,80 @@ ul {
 }
 
 /* ToDo Block */
+#todo__content {
+  /* display: flex; */
+  display: grid;
+  grid-template-columns: 1fr 20rem;
+}
 .todo__form {
-  width: 100%;
-  max-width: 35rem;
+   width: 100%;
+  /*max-width: 35rem;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; */
 
   .todo__input-header {
     width: 100%;
     font-size: 1.2rem;
-    border-radius: 0.5rem;
-    padding-inline: 0.5rem;
+    /* border-radius: 1rem; */
+    padding: .5rem 1rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border-bottom: thin solid var(--secondary-color_75);
   }
 
   .todo__textarea-text {
     width: 100%;
-    height: 5rem;
+    height: 7rem;
     margin-block-start: 0.5rem;
     font-size: 1.2rem;
-    padding-block: 0.5rem;
-    border-radius: 0.5rem;
+    padding: .5rem 1rem;
+    /* border-radius: 1rem; */
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: thin solid var(--secondary-color_75);
+    outline: none;
   }
 
   .btn__todo-add {
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--menu-color);
+    color: var(--secondary-color-75);
+    border: none;
+  }
+}
+
+.no_todo__card {
+  /* background-color: gray;
+  border-radius: 2rem; */
+  padding: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-end: 1rem;
+}
+
+.todo__card {
+  /* background-color: gray; */
+  /* border-radius: 2rem; */
+  border-top: thin solid var(--secondary-color_75);
+  border-bottom: thin solid var(--secondary-color_75);
+  padding: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-end: 1rem;
+
+  .todo__card-actions {
+    text-align: right;
+  }
+
+  .todo__card-actions > .btn {
+    background-color: transparent;
+    border: none;
+  }
+}
+
+@media(max-width: 56rem) {
+  #todo__content {
+    grid-template-columns: 1fr;
   }
 }
