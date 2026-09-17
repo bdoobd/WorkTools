@@ -20,10 +20,10 @@ const linkData = async function getLinkData() {
 
 const linkCard = function (data) {
   return `
-    <div class="card card">
+    <div class="card__link">
       <div class="card__header">
         <h3><a href="#">Title</a></h3><h4>Category</h4>
-      </dev>
+      </div>
       <div class="card__body">
         Keikkalista is a tool used for managing and scheduling work shifts. It allows employees to view their assigned shifts, request changes, and communicate with their team. The platform helps streamline workforce management and improve communication within the organization.
       </div>

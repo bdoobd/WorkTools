@@ -256,3 +256,25 @@ ul {
   border: none;
   cursor: pointer;
 }
+
+.cards-grid {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+}
+
+.card__link {
+  width: 15rem;
+  padding: 1rem;
+
+  border: thin solid var(--tertiary-color);
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+
+  h3 > a {
+    color: wheat;
+  }
+}
