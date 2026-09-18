@@ -12,7 +12,6 @@ const mainElement = document.querySelector(".main");
 const routes = {
   home: () => ` <div class="links-header">
                   <h1>Рабочие ссылки</h1>
-                  <button id="add-link-btn" class="btn btn__add-link">+ Добавить ссылку</button>
                 </div>
                 <div id="links-grid" class="cards-grid"></div>`,
   calc: () => '<h1>Calculator</h1><div id="calc__content"></div>',
