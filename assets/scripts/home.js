@@ -20,7 +20,7 @@ const linkCard = function (data) {
   return `
     <div class="card__link">
       <div class="card__header">
-        <h3><a href="${data.url}">${data.title}</a></h3>
+        <h3><a href="${data.url}" target="_blank">${data.title}</a></h3>
       </div>
       <div class="card__body">
         <em>${data.description}</em>

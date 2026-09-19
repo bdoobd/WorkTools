@@ -262,6 +262,7 @@ ul {
   display: flex;
   flex-flow: row wrap;
   gap: 1rem;
+  justify-content: space-evenly;
 }
 
 .card__category {
