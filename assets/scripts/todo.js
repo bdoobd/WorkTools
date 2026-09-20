@@ -71,7 +71,7 @@ function renderTasks() {
     .map((todo, index) =>
       todo.completed
         ? `
-        <div class="todo__card ${todo.completed ? "done" : ""} ${todo.important ? "important" : ""}" data-index="${index}">
+        <div class="todo__card ${todo.completed ? "done" : ""}">
             <h3 class="todo__card-header">${todo.header}</h3>
             <p class="todo__card-text">${todo.text}</p>
             <div class="todo__card-actions">
