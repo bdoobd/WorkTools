@@ -95,8 +95,6 @@ export function initTodo() {
 
   renderTodoInterface(todoContainer);
 
-  console.log(getTodos());
-
   const todoHeader = document.getElementById("todo_header");
   const todoText = document.getElementById("todo_text");
   const todoImportant = document.querySelector(".todo__important");
