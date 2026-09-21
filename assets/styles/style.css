@@ -359,4 +359,35 @@ ul {
       cursor: pointer;
     }
   }
+
+  .dimension-line {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) auto;
+    gap: 0.75rem;
+    align-items: end;
+    margin-block: 0.5rem;
+    background-color: var(--primary-color);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: thin solid var(--menu-color);
+
+    .label {
+      color: var(--secondary-color);
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 0.35rem;
+      box-sizing: border-box;
+    }
+
+    .delete-line-btn {
+      background: none;
+      font-size: 1.1rem;
+      border: none;
+      color: red;
+      cursor: pointer;
+      padding-block-end: 0.5rem;
+    }
+  }
 }

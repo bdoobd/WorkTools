@@ -41,6 +41,24 @@
       "url": "https://www.webcargonet.com/#inicio.php",
       "category": "Work",
       "description": "Flight order app"
+    },
+    {
+      "title": "TACT Online",
+      "url": "https://tact.iata.org/Account/LogOn?ReturnUrl=%2FHome",
+      "category": "Work",
+      "description": "Rates by weight"
+    },
+    {
+      "title": "Finnair Login",
+      "url": "https://prdcgoay.mercator.com/skychain/app?service=page/nwp:Login",
+      "category": "Ground Operators",
+      "description": "Finnair Dock appointment"
+    },
+    {
+      "title": "ASR Qstep: qClient",
+      "url": "https://asr.qstep.eu/",
+      "category": "Ground Operators",
+      "description": "ASR Cargo Center AWB check"
     }
   ]
 }

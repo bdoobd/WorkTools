@@ -1,6 +1,15 @@
 const CALC_KEY = "Calc";
 const AIR_RATIO = 6000;
 
+function getHistory() {
+  const data = localStorage.getItem(CALC_KEY);
+  return data ? JSON.parse(data) : [];
+}
+
+function saveHistory(history) {
+  localStorage.setItem(CALC_KEY, JSON.stringify(history));
+}
+
 function renderCalcInterface(container) {
   container.innerHTML = `
     <div class="calc__wrapper">
@@ -13,8 +22,8 @@ function renderCalcInterface(container) {
         <div class="dim__lines" id="dim_lines"></div>
   
         <div class="btn btn__calc_group">
-          <button name=""id="add_line_btn">➕ Добавить место</button>
-          <button name=""id="save_calc_btn">💾 Сохранить расчет</button>
+          <button name="" id="add_line_btn">➕ Добавить место</button>
+          <button name="" id="save_calc_btn">💾 Сохранить расчет</button>
         </div>
       </div>
 
@@ -39,29 +48,29 @@ function createLineHTML(
   data = { pcs: 1, l: "", w: "", h: "", weight: "" },
 ) {
   return `
-        <div class="dimension-line" data-index="${index}" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr 1fr auto; gap: 10px; align-items: end; margin-bottom: 10px; background: #fff; padding: 10px; border-radius: 4px; border: 1px solid #eee;">
+        <div class="dimension-line" data-index="${index}">
             <div>
-                <label style="font-size: 12px; color: #666;">Кол-во (Pcs)</label>
-                <input type="number" class="input-pcs" value="${data.pcs}" min="1" style="width: 100%; padding: 6px; box-sizing: border-box;">
+                <label>Кол-во (Pcs)</label>
+                <input type="number" class="input-pcs" value="${data.pcs}" min="1">
             </div>
             <div>
-                <label style="font-size: 12px; color: #666;">Длина (Д, см)</label>
-                <input type="number" class="input-l" value="${data.l}" min="0" placeholder="см" style="width: 100%; padding: 6px; box-sizing: border-box;">
+                <label>Длина (Д, см)</label>
+                <input type="number" class="input-l" value="${data.l}" min="0" placeholder="см">
             </div>
             <div>
-                <label style="font-size: 12px; color: #666;">Ширина (Ш, см)</label>
-                <input type="number" class="input-w" value="${data.w}" min="0" placeholder="см" style="width: 100%; padding: 6px; box-sizing: border-box;">
+                <label>Ширина (Ш, см)</label>
+                <input type="number" class="input-w" value="${data.w}" min="0" placeholder="см">
             </div>
             <div>
-                <label style="font-size: 12px; color: #666;">Высота (В, см)</label>
-                <input type="number" class="input-h" value="${data.h}" min="0" placeholder="см" style="width: 100%; padding: 6px; box-sizing: border-box;">
+                <label>Высота (В, см)</label>
+                <input type="number" class="input-h" value="${data.h}" min="0" placeholder="см">
             </div>
             <div>
-                <label style="font-size: 12px; color: #666;">Вес 1 места (кг)</label>
-                <input type="number" class="input-weight" value="${data.weight}" min="0" placeholder="кг" style="width: 100%; padding: 6px; box-sizing: border-box;">
+                <label>Вес 1 места (кг)</label>
+                <input type="number" class="input-weight" value="${data.weight}" min="0" placeholder="кг">
             </div>
             <div>
-                <button class="delete-line-btn" style="background: none; border: none; color: #ff4d4d; cursor: pointer; font-size: 16px; padding-bottom: 5px;">❌</button>
+                <button class="delete-line-btn">❌</button>
             </div>
         </div>
     `;
@@ -72,6 +81,40 @@ export function initCalc() {
 
   if (!container) return;
 
-  // TODO: Отрисовать интерфейс
   renderCalcInterface(container);
+  const linesContainer = document.getElementById("dim_lines");
+  const addLineBtn = document.getElementById("add_line_btn");
+  const saveBtn = document.getElementById("save_calc_btn");
+  let counter = 0;
+
+  function addLine(data) {
+    const tmpDiv = document.createElement("div");
+    tmpDiv.innerHTML = createLineHTML(counter++, data);
+
+    linesContainer.appendChild(tmpDiv);
+    // TODO: Включить расчёт
+    // calculateTotal();
+  }
+
+  addLine();
+
+  addLineBtn.addEventListener("click", () => addLine());
+
+  linesContainer.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".delete-line-btn");
+    if (!deleteBtn) return;
+
+    const line = deleteBtn.closest(".dimension-line");
+
+    if (document.querySelectorAll(".dimension-line").length > 1) {
+      line.remove();
+      // TODO: Включить расчёт
+      // calculateTotal();
+    } else {
+      // TODO: Подумать как выдавать ошибку пользователю
+      alert("Последнее место не удалять!!!");
+    }
+
+    console.log(line);
+  });
 }
