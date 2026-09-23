@@ -15,8 +15,8 @@ function renderCalcInterface(container) {
     <div class="calc__wrapper">
       <div class="calc__block">
         <fieldset class="name_result">
-          <label for="name">Название/Номер груза (необязательно):</label>
-          <input type="text" name="name" class="name__field" placeholder="Например номер кейкки или имя отправителя">
+          <label for="case_name">Название/Номер груза (необязательно):</label>
+          <input type="text" id="case_name" class="name__field" placeholder="Например номер кейкки или имя отправителя">
         </fieldset>
 
         <div class="dim__lines" id="dim_lines"></div>
@@ -50,30 +50,40 @@ function createLineHTML(
   return `
         <div class="dimension-line" data-index="${index}">
             <div>
-                <label>Кол-во (Pcs)</label>
-                <input type="number" class="input-pcs" value="${data.pcs}" min="1">
+                <label for="line_qty_${index}">Кол-во (Pcs)</label>
+                <input type="number" class="input-pcs" value="${data.pcs}" min="1" id="line_qty_${index}">
             </div>
             <div>
-                <label>Длина (Д, см)</label>
-                <input type="number" class="input-l" value="${data.l}" min="0" placeholder="см">
+                <label for="line_l_${index}">Длина (Д, см)</label>
+                <input type="number" class="input-l" value="${data.l}" min="0" placeholder="см" id="line_l_${index}">
             </div>
             <div>
-                <label>Ширина (Ш, см)</label>
-                <input type="number" class="input-w" value="${data.w}" min="0" placeholder="см">
+                <label for="line_w_${index}">Ширина (Ш, см)</label>
+                <input type="number" class="input-w" value="${data.w}" min="0" placeholder="см" id="line_w_${index}">
             </div>
             <div>
-                <label>Высота (В, см)</label>
-                <input type="number" class="input-h" value="${data.h}" min="0" placeholder="см">
+                <label for="line_h_${index}">Высота (В, см)</label>
+                <input type="number" class="input-h" value="${data.h}" min="0" placeholder="см" id="line_h_${index}">
             </div>
             <div>
-                <label>Вес 1 места (кг)</label>
-                <input type="number" class="input-weight" value="${data.weight}" min="0" placeholder="кг">
+                <label for="line_weight_${index}">Вес 1 места (кг)</label>
+                <input type="number" class="input-weight" value="${data.weight}" min="0" placeholder="кг" id="line_weight_${index}">
             </div>
             <div>
                 <button class="delete-line-btn">❌</button>
             </div>
         </div>
     `;
+}
+
+function calculateTotals() {
+  let totalGross = 0;
+  let totalVolume = 0;
+  let totalVolumetricWeight = 0;
+
+  const lines = document.querySelectorAll(".dimension-line");
+
+  console.log(lines);
 }
 
 export function initCalc() {
@@ -93,7 +103,7 @@ export function initCalc() {
 
     linesContainer.appendChild(tmpDiv);
     // TODO: Включить расчёт
-    // calculateTotal();
+    calculateTotals();
   }
 
   addLine();
@@ -109,7 +119,7 @@ export function initCalc() {
     if (document.querySelectorAll(".dimension-line").length > 1) {
       line.remove();
       // TODO: Включить расчёт
-      // calculateTotal();
+      calculateTotals();
     } else {
       // TODO: Подумать как выдавать ошибку пользователю
       alert("Последнее место не удалять!!!");

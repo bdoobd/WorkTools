@@ -21,7 +21,7 @@ function renderTodoInterface(container) {
             <div class="todo__input-container">
                 <input type="text" id="todo_header" class="todo__input-header" placeholder="Заголовок для задачи" tabindex="1" />
                 <textarea id="todo_text" class="todo__textarea-text" placeholder="Текст задачи" tabindex="2"></textarea>
-                <input type="checkbox" name="important" class="todo__important" tabindex="3"><label for="important" class="label__important">Высокая важность задачи</label>
+                <input type="checkbox" id="important" class="todo__important" tabindex="3"><label for="important" class="label__important">Высокая важность задачи</label>
             </div>
             <button name="addTodo" id="todo__button" class="btn btn__todo-add" tabindex="4">Добавить</button>
         </div>
