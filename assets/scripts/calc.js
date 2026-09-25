@@ -83,7 +83,41 @@ function calculateTotals() {
 
   const lines = document.querySelectorAll(".dimension-line");
 
-  console.log(lines);
+  lines.forEach((line) => {
+    const pcs = parseFloat(line.querySelector(".input-pcs").value);
+    const l = parseFloat(line.querySelector(".input-l").value);
+    const w = parseFloat(line.querySelector(".input-w").value);
+    const h = parseFloat(line.querySelector(".input-h").value);
+    const weight = parseFloat(line.querySelector(".input-weight").value);
+
+    if (pcs > 0) {
+      const lineCBM = ((l * w * h) / 1000000) * pcs;
+      totalVolume += lineCBM;
+      totalGross += weight * pcs;
+      const lineVolumetric = (l * w * h) / 6000;
+      totalVolumetricWeight += lineVolumetric;
+    }
+  });
+
+  const chargeable = Math.max(totalGross, totalVolumetricWeight);
+
+  document.getElementById("total_cbm").textContent = totalVolume.toFixed(3);
+  document.getElementById("total_gross").textContent = totalGross.toFixed(2);
+  document.getElementById("total_chargeable").textContent =
+    chargeable.toFixed(2);
+
+  const badge = document.getElementById("calc_method_badge");
+
+  if (totalGross < totalVolumetricWeight) {
+    badge.textContent = "Вес, рассчитанный по объёму больше фактического";
+    badge.style.color = "rgba(100,100,220,1)";
+  } else if (totalGross > 0) {
+    badge.textContent = "Фактический вес более объёмного";
+    badge.style.color = "rgba(100,220,100,1)";
+  } else {
+    badge.textContent = "Ожидание ввода данных...";
+    badge.style.color = "rgba(100,100,100,1)";
+  }
 }
 
 export function initCalc() {
@@ -109,6 +143,12 @@ export function initCalc() {
   addLine();
 
   addLineBtn.addEventListener("click", () => addLine());
+
+  container.addEventListener("input", (e) => {
+    if (e.target.tagName === "INPUT") {
+      calculateTotals();
+    }
+  });
 
   linesContainer.addEventListener("click", (e) => {
     const deleteBtn = e.target.closest(".delete-line-btn");
