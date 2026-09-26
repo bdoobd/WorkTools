@@ -120,6 +120,20 @@ function calculateTotals() {
   }
 }
 
+// TODO: Отрисовать историю
+function renderHistory() {
+  const container = document.getElementById('calc_history_list');
+
+  if(!container) return;
+
+  const history = getHistory();
+
+  if(history === 0) {
+    container.innerHTML = '<p id="empty_history">Нет грузов в истории</p>';
+    return; 
+  }
+}
+
 export function initCalc() {
   const container = document.getElementById("calc__content");
 
@@ -167,4 +181,6 @@ export function initCalc() {
 
     console.log(line);
   });
+
+  renderHistory();
 }
