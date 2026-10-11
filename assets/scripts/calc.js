@@ -120,6 +120,39 @@ function calculateTotals() {
   }
 }
 
+function renderHistory() {
+  const container = document.getElementById("calc_history_list");
+
+  if (!container) return;
+
+  const history = getHistory();
+
+  if (history.length === 0) {
+    container.innerHTML = '<p class="history-empty">История пуста</p>';
+    return;
+  }
+  // TODO: Отредактировать теги и вынести вложеннные стили в файл стилей
+  container.innerHTML = history
+    .map(
+      (item, index) => `
+      <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 8px; font-size: 14px;">
+          <div>
+              <strong>${item.name || `Расчет #${history.length - index}`}</strong>
+              <span style="color: #666; margin-left: 10px;">(${item.date})</span>
+              <div style="margin-top: 4px; color: #333;">
+                  ${item.totalCBM} CBM | Брутто: ${item.totalGross} кг | <strong>Ch. Weight: ${item.totalChargeable} кг</strong>
+              </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+              <button class="load-calc-btn" data-index="${index}" style="background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">✏️ Редактировать</button>
+              <button class="delete-calc-btn" data-index="${index}" style="background: none; border: none; color: red; cursor: pointer;">❌</button>
+          </div>
+      </div>
+  `,
+    )
+    .join("");
+}
+
 export function initCalc() {
   const container = document.getElementById("calc__content");
 
@@ -136,7 +169,6 @@ export function initCalc() {
     tmpDiv.innerHTML = createLineHTML(counter++, data);
 
     linesContainer.appendChild(tmpDiv);
-    // TODO: Включить расчёт
     calculateTotals();
   }
 
@@ -158,13 +190,60 @@ export function initCalc() {
 
     if (document.querySelectorAll(".dimension-line").length > 1) {
       line.remove();
-      // TODO: Включить расчёт
       calculateTotals();
     } else {
       // TODO: Подумать как выдавать ошибку пользователю
       alert("Последнее место не удалять!!!");
     }
 
-    console.log(line);
+    // console.log(line);
   });
+
+  saveBtn.addEventListener("click", () => {
+    const caseName = document.getElementById("case_name");
+
+    if (caseName.value === "") {
+      caseName.classList.add("empty_warning");
+      return;
+    }
+
+    const lineData = [];
+
+    document.querySelectorAll(".dimension-line").forEach((row) => {
+      console.log(row);
+      lineData.push({
+        pcs: row.querySelector(".input-pcs").value,
+        l: row.querySelector(".input-l").value,
+        w: row.querySelector(".input-w").value,
+        h: row.querySelector(".input-h").value,
+        weight: row.querySelector(".input-weight").value,
+      });
+    });
+
+    const record = {
+      name: caseName.value.trim(),
+      date: new Date().toLocaleString("fi-FI", {
+        hour: "2-digit",
+        minute: "2-digit",
+        day: "2-digit",
+        month: "2-digit",
+      }),
+      lines: lineData,
+      totalCBM: document.getElementById("total_cbm").textContent,
+      totalGross: document.getElementById("total_gross").textContent,
+      totalChargeable: document.getElementById("total_chargeable").textContent,
+    };
+
+    const tmpData = getHistory();
+
+    tmpData.push(record);
+    saveHistory(tmpData);
+    console.log(tmpData);
+
+    caseName.value = "";
+    renderHistory();
+    alert("Записано");
+  });
+
+  renderHistory();
 }

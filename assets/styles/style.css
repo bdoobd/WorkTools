@@ -346,6 +346,11 @@ ul {
       font-size: 1.2rem;
       padding: 0.5rem;
     }
+
+    .empty_warning {
+      outline: 0.15rem solid red;
+      /* background-color: rgba(255, 100, 100, 0.5); */
+    }
   }
 
   .btn__calc_group {
@@ -388,6 +393,13 @@ ul {
       color: red;
       cursor: pointer;
       padding-block-end: 0.5rem;
+    }
+  }
+
+  #calc_history_list {
+    .history-empty {
+      font-style: italic;
+      color: var(--menu-color);
     }
   }
 }
