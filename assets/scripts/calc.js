@@ -143,9 +143,9 @@ function renderHistory() {
                   ${item.totalCBM} CBM | Брутто: ${item.totalGross} кг | <strong>Ch. Weight: ${item.totalChargeable} кг</strong>
               </div>
           </div>
-          <div class="history-item-actions" style="display: flex; gap: 8px;">
-              <button class="load-calc-btn" data-index="${index}" style="background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">✏️ Редактировать</button>
-              <button class="delete-calc-btn" data-index="${index}" style="background: none; border: none; color: red; cursor: pointer;">❌</button>
+          <div class="history-item-actions">
+              <button class="load-calc-btn" data-index="${index}">✏️ Редактировать</button>
+              <button class="delete-calc-btn" data-index="${index}">❌</button>
           </div>
       </div>
   `,
@@ -250,8 +250,21 @@ export function initCalc() {
 
   const historyList = document.getElementById("calc_history_list");
   historyList.addEventListener("click", (e) => {
-    const loadBtn = e.target.closest(".load-calc-btn");
-    const deleteBtn = e.target.closest(".delete-calc-btn"); 
+    const index = parseInt(e.target.dataset.index, 10);
+
+    if (isNaN(index)) return;
+
+    const fetched = getHistory();
+
+    if (e.target.classList.contains("delete-calc-btn")) {
+      if (confirm("Удалить эту запись из истории?")) {
+        fetched.splice(index, 1);
+        saveHistory(fetched);
+        renderHistory();
+      }
+    }
+
+    // console.dir(e.target);
   });
 
   renderHistory();

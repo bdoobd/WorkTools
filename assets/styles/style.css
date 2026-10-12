@@ -429,6 +429,22 @@ ul {
     .history-item-actions {
       display: flex;
       gap: 0.5rem;
+
+      .load-calc-btn {
+        cursor: pointer;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+      }
+
+      .delete-calc-btn {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: red;
+      }
     }
   }
 }
