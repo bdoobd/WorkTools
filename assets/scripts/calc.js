@@ -135,15 +135,15 @@ function renderHistory() {
   container.innerHTML = history
     .map(
       (item, index) => `
-      <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 8px; font-size: 14px;">
-          <div>
-              <strong>${item.name || `Расчет #${history.length - index}`}</strong>
-              <span style="color: #666; margin-left: 10px;">(${item.date})</span>
+      <div class="history-item">
+          <div class="history-item-info">
+              <strong class="history-item-name">${item.name || `Расчет #${history.length - index}`}</strong>
+              <span class="history-item-date">(${item.date})</span>
               <div style="margin-top: 4px; color: #333;">
                   ${item.totalCBM} CBM | Брутто: ${item.totalGross} кг | <strong>Ch. Weight: ${item.totalChargeable} кг</strong>
               </div>
           </div>
-          <div style="display: flex; gap: 8px;">
+          <div class="history-item-actions" style="display: flex; gap: 8px;">
               <button class="load-calc-btn" data-index="${index}" style="background: #007bff; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer;">✏️ Редактировать</button>
               <button class="delete-calc-btn" data-index="${index}" style="background: none; border: none; color: red; cursor: pointer;">❌</button>
           </div>
@@ -241,8 +241,17 @@ export function initCalc() {
     console.log(tmpData);
 
     caseName.value = "";
+    // TODO: Очистить все строки расчёта, кроме одной пустой
+    linesContainer.innerHTML = "";
+    addLine();
     renderHistory();
     alert("Записано");
+  });
+
+  const historyList = document.getElementById("calc_history_list");
+  historyList.addEventListener("click", (e) => {
+    const loadBtn = e.target.closest(".load-calc-btn");
+    const deleteBtn = e.target.closest(".delete-calc-btn"); 
   });
 
   renderHistory();

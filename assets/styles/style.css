@@ -401,5 +401,34 @@ ul {
       font-style: italic;
       color: var(--menu-color);
     }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem;
+      background-color: var(--secondary-color);
+      border: thin solid var(--menu-color);
+      border-radius: 0.25rem;
+      margin-block-end: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .history-item-info {
+      .history-item-name {
+        font-size: 1.2rem;
+        color: var(--primary-color);
+      }
+
+      .history-item-date {
+        font-size: 0.9rem;
+        color: var(--menu-color);
+      }
+    }
+
+    .history-item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
   }
 }
