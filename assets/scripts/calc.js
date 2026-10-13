@@ -210,7 +210,7 @@ export function initCalc() {
     const lineData = [];
 
     document.querySelectorAll(".dimension-line").forEach((row) => {
-      console.log(row);
+      // console.log(row);
       lineData.push({
         pcs: row.querySelector(".input-pcs").value,
         l: row.querySelector(".input-l").value,
@@ -238,14 +238,13 @@ export function initCalc() {
 
     tmpData.push(record);
     saveHistory(tmpData);
-    console.log(tmpData);
+    // console.log(tmpData);
 
     caseName.value = "";
-    // TODO: Очистить все строки расчёта, кроме одной пустой
     linesContainer.innerHTML = "";
     addLine();
     renderHistory();
-    alert("Записано");
+    // alert("Записано");
   });
 
   const historyList = document.getElementById("calc_history_list");
@@ -262,6 +261,23 @@ export function initCalc() {
         saveHistory(fetched);
         renderHistory();
       }
+    }
+
+    if (e.target.classList.contains("load-calc-btn")) {
+      const row = fetched[index];
+
+      document.getElementById("case_name").value = row.name;
+
+      linesContainer.innerHTML = "";
+      counter = 0;
+
+      // console.log(row);
+
+      row.lines.forEach((rowData) => {
+        addLine(rowData);
+      });
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     // console.dir(e.target);
