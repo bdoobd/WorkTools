@@ -239,13 +239,18 @@ ul {
   margin-block-end: 1rem;
   margin-inline-end: 1rem;
 
-  .todo__card-actions {
-    text-align: right;
-  }
+  .todo__card-header {
+    display: grid;
+    grid-template-columns: 1fr 3rem;
 
-  .todo__card-actions > .btn {
-    background-color: transparent;
-    border: none;
+    .card-header__actions {
+      text-align: right;
+    }
+
+    .card-header__actions > .btn {
+      background-color: transparent;
+      border: none;
+    }
   }
 }
 

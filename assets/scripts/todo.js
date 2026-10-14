@@ -52,16 +52,18 @@ function renderTasks() {
         ? ""
         : `
         <div class="todo__card ${todo.completed ? "done" : ""} ${todo.important ? "important" : ""}" data-index="${index}">
-            <h3 class="todo__card-header">${todo.header}</h3>
-            <p class="todo__card-text">${todo.text}</p>
-            <div class="todo__card-actions">
-                <button class="btn btn__todo-done" data-index="${index}">
-                    ✅
-                </button>
-                <button class="btn btn__todo-delete" data-index="${index}">
-                    ❌
-                </button>
+          <div class="todo__card-header">
+            <h3 class="card-header__text">${todo.header}</h3>
+            <div class="card-header__actions">
+            <button class="btn btn__todo-done" data-index="${index}">
+            ✅
+            </button>
+            <button class="btn btn__todo-delete" data-index="${index}">
+            ❌
+            </button>
             </div>
+          </div>
+          <p class="todo__card-text">${todo.text}</p>
         </div>
     `,
     )
