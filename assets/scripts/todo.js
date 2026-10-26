@@ -50,7 +50,7 @@ function renderTasks() {
       todo.completed
         ? ""
         : `
-        <div class="todo__card ${todo.completed ? "done" : ""} ${todo.important ? "important" : ""}" data-index="${index}">
+        <div class="todo__card add_shadow ${todo.completed ? "done" : ""} ${todo.important ? "important_shadow" : ""}" data-index="${index}">
           <div class="todo__card-header">
             <h3 class="card-header__text">${todo.header}</h3>
             <div class="card-header__actions">
@@ -72,7 +72,7 @@ function renderTasks() {
     .map((todo, index) =>
       todo.completed
         ? `
-        <div class="todo__card ${todo.completed ? "done" : ""}">
+        <div class="todo__card ready_shadow ${todo.completed ? "done" : ""}">
             <div class="todo__card-header">
               <h3 class="card-header__text">${todo.header}</h3>
               <div class="card-header__actions">
