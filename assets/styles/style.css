@@ -9,6 +9,8 @@
   --menu-color: rgba(75, 64, 56, 1);
   --color-done: rgba(0, 255, 0, 0.15);
   --color-important: rgba(200, 100, 20, 0.15);
+  --white-text: rgba(255, 255, 255, 1);
+  --white-text-75: rgba(255, 255, 255, 0.75);
 }
 
 * {
@@ -175,6 +177,7 @@ ul {
     color: var(--secondary-color-50);
   }
 }
+
 .todo__form {
   width: 100%;
 
@@ -232,19 +235,40 @@ ul {
   margin-inline-end: 1rem;
 }
 
+#in_progress,
+#ready {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
 .todo__card {
-  border-top: thin solid var(--secondary-color-75);
-  border-bottom: thin solid var(--secondary-color-75);
-  padding: 1rem;
+  /* border-top: thin solid var(--secondary-color-75);
+  border-bottom: thin solid var(--secondary-color-75); */
+  border: thin solid var(--secondary-color-75);
+  border-radius: 0.5rem;
+  background-color: var(--white-text-75);
+  color: var(--primary-color);
+  /* padding: 1rem; */
   margin-block-end: 1rem;
   margin-inline-end: 1rem;
 
   .todo__card-header {
     display: grid;
+    background-color: var(--primary-color);
+    border-radius: 0.5rem 0.5rem 0 0;
+    padding: cd 1rem;
     grid-template-columns: 1fr 3rem;
+
+    .card-header__text {
+      color: var(--white-text);
+      /* font-size: 1.2rem;
+      font-weight: bold; */
+    }
 
     .card-header__actions {
       text-align: right;
+      display: flex;
     }
 
     .card-header__actions > .btn {
@@ -258,8 +282,22 @@ ul {
   background-color: var(--color-important);
 }
 
+@media (max-width: 84rem) {
+  #in_progress,
+  #ready {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 56rem) {
   #todo__content {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 62rem) {
+  #in_progress,
+  #ready {
     grid-template-columns: 1fr;
   }
 }

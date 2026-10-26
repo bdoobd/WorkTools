@@ -60,5 +60,5 @@ navElement.addEventListener("click", (event) => {
 
 // START UP
 document.addEventListener("DOMContentLoaded", () => {
-  navigateTo("calc");
+  navigateTo("todo");
 });
