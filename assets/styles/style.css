@@ -259,7 +259,7 @@ ul {
 
   .todo__card-header {
     display: grid;
-    padding: .5rem;
+    padding: 0.5rem;
     background-color: var(--primary-color);
     border-radius: 0.5rem 0.5rem 0 0;
     grid-template-columns: 1fr 3.5rem;
@@ -283,20 +283,20 @@ ul {
   }
 
   .todo__card-text {
-      padding: 1rem 0.5rem;
-    }
+    padding: 1rem 0.5rem;
+  }
 }
 
 .add_shadow {
-  box-shadow: .5rem .5rem 1rem gray;
+  box-shadow: 0.5rem 0.5rem 1rem gray;
 }
 
 .important_shadow {
-  box-shadow: .5rem .5rem 1rem rgba(200, 100, 100, 0.75);
+  box-shadow: 0.5rem 0.5rem 1rem rgba(200, 100, 100, 0.75);
 }
 
 .ready_shadow {
-  box-shadow: .5rem .5rem 1rem rgba(100, 200, 100, 0.75);
+  box-shadow: 0.5rem 0.5rem 1rem rgba(100, 200, 100, 0.75);
 }
 
 @media (max-width: 84rem) {
@@ -386,8 +386,10 @@ ul {
 
 /* Callculator */
 .calc__wrapper {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 
   .name_result {
@@ -399,12 +401,15 @@ ul {
     label {
       font-weight: bold;
       font-size: 1.1rem;
-      margin-inline-end: 2rem;
+      /* margin-inline-end: 2rem;
+      margin-block-end: 1rem; */
     }
 
     input[type="text"] {
       font-size: 1.2rem;
       padding: 0.5rem;
+      margin-block-start: 1rem;
+      width: 100%;
     }
 
     .empty_warning {
@@ -506,5 +511,22 @@ ul {
         color: red;
       }
     }
+  }
+}
+
+@media (max-width: 100rem) {
+  .calc__wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #history_block {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+}
+
+@media (max-width: 61rem) {
+  .calc__wrapper {
+    grid-template-columns: 1fr;
   }
 }
